@@ -1,20 +1,25 @@
-import { useEffect, useState } from 'react';
-
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 
 import MeetupList from '@components/meetup/MeetupList';
 import { DUMMY_MEETUPS } from '@fixtures/meetups';
 import { Meetup } from '@models/meetup';
 
-const HomePage: NextPage = () => {
-  const [loadedMeetups, setLoadedMeetups] = useState<Meetup[]>([]);
+type HomePageProps = {
+  meetups: Meetup[];
+};
 
-  useEffect(() => {
-    // send a http request and fetch data
-    setLoadedMeetups(DUMMY_MEETUPS);
-  }, []);
+const HomePage: NextPage<HomePageProps> = ({ meetups }) => {
+  return <MeetupList meetups={meetups} />;
+};
 
-  return <MeetupList meetups={loadedMeetups} />;
+export const getStaticProps: GetStaticProps = async () => {
+  // fetch data from an API
+
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
 };
 
 export default HomePage;
