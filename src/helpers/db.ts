@@ -26,6 +26,17 @@ const createMeetup = async (meetup: MeetupCreate) => {
   }
 };
 
+const readMeetups = async () => {
+  try {
+    const db = await connectDb();
+    const meetupCollection = db.collection<DbMeetup>('meetup');
+    const dbMeetups = await meetupCollection.find().toArray();
+    return dbMeetups.map((dbMeetup) => toMeetup(dbMeetup));
+  } finally {
+    client.close();
+  }
+};
+
 const readMeetup = async (meetupId: string) => {
   try {
     const db = await connectDb();
@@ -42,4 +53,4 @@ const readMeetup = async (meetupId: string) => {
   }
 };
 
-export { createMeetup, readMeetup };
+export { createMeetup, readMeetups, readMeetup };

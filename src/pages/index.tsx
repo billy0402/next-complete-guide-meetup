@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next';
 
 import MeetupList from '@components/meetup/MeetupList';
-import { DUMMY_MEETUPS } from '@fixtures/meetups';
+import { readMeetups } from '@helpers/db';
 import { Meetup } from '@models/meetup';
 
 type HomePageProps = {
@@ -14,10 +14,11 @@ const HomePage: NextPage<HomePageProps> = ({ meetups }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   // fetch data from an API
+  const meetups = await await readMeetups();
 
   return {
     props: {
-      meetups: DUMMY_MEETUPS,
+      meetups,
     },
     revalidate: 1,
   };
