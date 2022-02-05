@@ -7,9 +7,6 @@ import '@styles/globals.scss';
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Layout>
-      <Head>
-        <title>Document</title>
-      </Head>
       <Component {...pageProps} />
     </Layout>
   );

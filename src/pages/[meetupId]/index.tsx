@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 
 import MeetupDetail from '@components/meetup/MeetupDetail';
 import { readMeetup, readMeetups } from '@helpers/db';
@@ -9,7 +10,15 @@ type MeetupDetailPageProps = {
 };
 
 const MeetupDetailPage: NextPage<MeetupDetailPageProps> = ({ meetup }) => {
-  return <MeetupDetail {...meetup} />;
+  return (
+    <>
+      <Head>
+        <title>{meetup.title}</title>
+        <meta name='description' content={meetup.description} />
+      </Head>
+      <MeetupDetail {...meetup} />
+    </>
+  );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {

@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 
 import MeetupList from '@components/meetup/MeetupList';
 import { readMeetups } from '@helpers/db';
@@ -9,7 +10,18 @@ type HomePageProps = {
 };
 
 const HomePage: NextPage<HomePageProps> = ({ meetups }) => {
-  return <MeetupList meetups={meetups} />;
+  return (
+    <>
+      <Head>
+        <title>React Meetups</title>
+        <meta
+          name='description'
+          content='Browse a huge list of highly active React meetups!'
+        />
+      </Head>
+      <MeetupList meetups={meetups} />
+    </>
+  );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
