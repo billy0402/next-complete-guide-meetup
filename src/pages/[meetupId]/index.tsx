@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 
 import MeetupDetail from '@components/meetup/MeetupDetail';
 import { DUMMY_MEETUPS } from '@fixtures/meetups';
@@ -23,6 +23,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
       meetup: { ...DUMMY_MEETUPS[0], id: meetupId },
     },
     revalidate: 1,
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { meetupId: 'm1' } }, { params: { meetupId: 'm2' } }],
+    fallback: false,
   };
 };
 
