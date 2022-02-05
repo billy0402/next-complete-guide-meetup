@@ -23,4 +23,16 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const { req, res } = context;
+
+//   // fetch data from an API
+
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//   };
+// };
+
 export default HomePage;
