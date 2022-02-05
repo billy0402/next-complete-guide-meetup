@@ -1,10 +1,10 @@
 import { SyntheticEvent, useRef } from 'react';
 
 import Card from '@components/ui/Card';
-import { Meetup } from '@models/meetup';
+import { MeetupCreate } from '@models/meetup';
 
 type NewMeetupProps = {
-  onAddMeetup: (meetup: Omit<Meetup, 'id'>) => void;
+  onAddMeetup: (meetup: MeetupCreate) => void;
 };
 
 const NewMeetupForm = ({ onAddMeetup }: NewMeetupProps) => {

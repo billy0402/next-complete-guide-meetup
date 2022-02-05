@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
 
 import NewMeetupForm from '@components/meetup/NewMeetupForm';
-import { Meetup } from '@models/meetup';
+import { MeetupCreate } from '@models/meetup';
 
 const NewMeetupPage: NextPage = () => {
-  const addMeetupHandler = (meetup: Omit<Meetup, 'id'>) => {
+  const addMeetupHandler = (meetup: MeetupCreate) => {
     console.log(meetup);
   };
 
