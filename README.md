@@ -1,4 +1,13 @@
+# [next-complete-guide-meetup](https://github.com/academind/react-complete-guide-code/tree/23-nextjs-introduction)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## environment
+
+- [macOS 10.15.7](https://www.apple.com/tw/macos/catalina/)
+- [Visual Studio Code 1.63.2](https://code.visualstudio.com/)
+- [nvm 0.39.1, node 16.13.2, npm 8.1.2](https://nodejs.org/en/)
+- [Next 12.0.10](https://nextjs.org/)
 
 ## Getting Started
 
