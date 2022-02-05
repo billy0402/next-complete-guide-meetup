@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 
 import MeetupDetail from '@components/meetup/MeetupDetail';
-import { DUMMY_MEETUPS } from '@fixtures/meetups';
+import { readMeetup, readMeetups } from '@helpers/db';
 import { Meetup } from '@models/meetup';
 
 type MeetupDetailPageProps = {
@@ -13,22 +13,23 @@ const MeetupDetailPage: NextPage<MeetupDetailPageProps> = ({ meetup }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const meetupId = context.params?.meetupId;
-  console.log(meetupId);
-
   // fetch data from a single meetup
+  const meetupId = context.params?.meetupId as string;
+  const meetup = await await readMeetup(meetupId);
 
   return {
     props: {
-      meetup: { ...DUMMY_MEETUPS[0], id: meetupId },
+      meetup,
     },
     revalidate: 1,
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const meetups = await await readMeetups();
+
   return {
-    paths: [{ params: { meetupId: 'm1' } }, { params: { meetupId: 'm2' } }],
+    paths: meetups.map((meetup) => ({ params: { meetupId: meetup.id } })),
     fallback: false,
   };
 };
